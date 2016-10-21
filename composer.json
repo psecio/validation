@@ -1,0 +1,19 @@
+{
+    "name": "psecio/validate",
+    "description": "A simple little validation library",
+    "keywords": ["validation", "security", "security"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Cornutt",
+            "email": "ccornutt@phpdeveloper.org"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Psecio\\Validate\\": "src/"
+        }
+    }
+}
