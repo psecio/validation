@@ -1,6 +1,6 @@
 <?php
 
-namespace Psecio\Validate;
+namespace Psecio\Validation;
 
 abstract class Rule
 {

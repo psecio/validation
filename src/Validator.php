@@ -1,13 +1,13 @@
 <?php
 
-namespace Psecio\Validate;
+namespace Psecio\Validation;
 
 abstract class Validator
 {
     public static function getInstance($type = null)
     {
         if ($type === null) {
-            return new \Psecio\Validator\Simple();
+            return new \Psecio\Validation\Validator\Simple();
         } else {
             // get a more complex one
         }

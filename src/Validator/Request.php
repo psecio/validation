@@ -1,8 +1,8 @@
 <?php
 
-namespace Psecio\Validate;
+namespace Psecio\Validation;
 
-class Request extends \Psecio\Validate\Validator
+class Request extends \Psecio\Validation\Validator
 {
-    
+
 }

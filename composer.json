@@ -1,5 +1,5 @@
 {
-    "name": "psecio/validate",
+    "name": "psecio/validation",
     "description": "A simple little validation library",
     "keywords": ["validation", "security", "security"],
     "license": "MIT",
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Psecio\\Validate\\": "src/"
+            "Psecio\\Validation\\": "src/"
         }
     }
 }

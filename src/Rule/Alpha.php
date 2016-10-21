@@ -1,8 +1,8 @@
 <?php
 
-namespace Psecio\Validate\Rule;
+namespace Psecio\Validation\Rule;
 
-class Alpha extends \Psecio\Validate\Rule
+class Alpha extends \Psecio\Validation\Rule
 {
     public function execute($input)
     {
