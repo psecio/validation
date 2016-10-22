@@ -1,0 +1,15 @@
+<phpunit backupGlobals="false"
+         convertErrorsToExceptions="true"
+         convertWarningsToExceptions="true"
+         convertNoticesToExceptions="true"
+         mapTestClassNameToCoveredClassName="true"
+         bootstrap="vendor/autoload.php"
+         strict="false"
+         verbose="true"
+         colors="true">
+    <testsuites>
+        <testsuite name="validation">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
