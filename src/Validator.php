@@ -13,5 +13,29 @@ abstract class Validator
         }
     }
 
-    public abstract function execute($input, $rules = []);
+    public function execute($input, $rules = [])
+    {
+        // Make our rule set
+        $set = new RuleSet();
+        $set = [];
+
+        foreach ($rules as $key => $ruleString) {
+            $set[$key] = new Rule($ruleString);
+        }
+
+        // Go through the set and execute all check
+        $failures = [];
+        foreach ($set as $key => $rule) {
+            if ($rule->isRequired() && (!isset($input[$key]) || empty($input[$key]))) {
+                $failures[$key] = $rule;
+            }
+
+            $result = $rule->execute($input[$key]);
+            if ($result === false) {
+                $failures[$key] = $rule;
+            }
+        }
+
+        return (count($failures) > 0);
+    }
 }
