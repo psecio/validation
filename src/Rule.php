@@ -10,9 +10,11 @@ class Rule
         'array' => 'IsArray'
     ];
 
-    public function __construct($ruleString)
+    public function __construct($ruleString = null)
     {
-        $this->setChecks($this->parse($ruleString));
+        if ($ruleString !== null) {
+            $this->setChecks($this->parse($ruleString));
+        }
     }
 
     public function setChecks(CheckSet $set)
@@ -71,6 +73,14 @@ class Rule
         $parts = explode('|', $ruleString);
 
         foreach ($parts as $part) {
+            $addl = [];
+
+            if (strstr($part, '[') !== false && strstr($part, ']') !== false) {
+                preg_match('/(.+)\[(.+?)\]/', $part, $matches);
+                $addl = explode(',', $matches[2]);
+                $part = $matches[1];
+            }
+
             if (isset($this->checkMap[$part])) {
                 $part = $this->checkMap[$part];
             }
@@ -78,7 +88,7 @@ class Rule
             if (!class_exists($checkNs)) {
                 throw new \InvalidArgumentException('Check type "'.$part.'" is invalid');
             }
-            $check = new $checkNs();
+            $check = new $checkNs($addl);
             $checks->add($check);
         }
         return $checks;
