@@ -13,10 +13,14 @@ abstract class Validator
         }
     }
 
-    public function execute($input, $rules = [])
+    public function errors()
+    {
+        return $this->failures;
+    }
+
+    public function execute($input, array $rules = [], array $messages = [])
     {
         // Make our rule set
-        $set = new RuleSet();
         $set = [];
 
         foreach ($rules as $key => $ruleString) {
@@ -35,7 +39,8 @@ abstract class Validator
                 $failures[$key] = $rule;
             }
         }
+        $this->failures = $failures;
 
-        return (count($failures) > 0);
+        return (count($this->failures) == 0);
     }
 }

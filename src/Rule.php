@@ -6,6 +6,9 @@ class Rule
 {
     protected $checks;
     protected $failures = [];
+    protected $checkMap = [
+        'array' => 'IsArray'
+    ];
 
     public function __construct($ruleString)
     {
@@ -29,7 +32,7 @@ class Rule
                 $this->addFailure($check);
             }
         }
-        return $this->isFailed();
+        return ($this->isFailed() === true) ? false : true;
     }
 
     public function addFailure(Check $check)
@@ -64,11 +67,13 @@ class Rule
 
     public function parse($ruleString)
     {
-        $parts = explode('|', $ruleString);
-        // echo 'parts: '.print_r($parts, true);
-
         $checks = new CheckSet();
+        $parts = explode('|', $ruleString);
+
         foreach ($parts as $part) {
+            if (isset($this->checkMap[$part])) {
+                $part = $this->checkMap[$part];
+            }
             $checkNs = '\\Psecio\\Validation\\Check\\'.ucwords(strtolower($part));
             if (!class_exists($checkNs)) {
                 throw new \InvalidArgumentException('Check type "'.$part.'" is invalid');
