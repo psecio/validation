@@ -58,4 +58,55 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $this->rule->setChecks($checkSet);
         $this->assertFalse($this->rule->isRequired());
     }
+
+    /**
+     * Evaluate the rule when the checks return a valid (true) result
+     */
+    public function testExecuteValid()
+    {
+        $input = 'test';
+        $checkSet = new CheckSet([
+            new \Psecio\Validation\Check\Required()
+        ]);
+
+        $this->rule->setChecks($checkSet);
+        $this->assertTrue($this->rule->execute($input));
+        $this->assertTrue(empty($this->rule->getFailures()));
+    }
+
+    /**
+     * Evaluate a rule when the checks return a failure (false)
+     */
+    public function testExecuteInvalid()
+    {
+        $input = 'test';
+        $checkSet = new CheckSet([
+            new \Psecio\Validation\Check\Integer()
+        ]);
+
+        $this->rule->setChecks($checkSet);
+        $this->assertFalse($this->rule->execute($input));
+        $this->assertEquals(1, count($this->rule->getFailures()));
+    }
+
+    /**
+     * Test that an exception is thrown when a bad check type is given
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testParseInvalidCheckType()
+    {
+        $checks = 'badtype';
+        $this->rule->parse($checks);
+    }
+
+    public function testParseCheckMappingValid()
+    {
+        $checks = 'array';
+        $result = $this->rule->parse($checks);
+
+        $this->assertInstanceOf('\Psecio\Validation\CheckSet', $result);
+        $this->assertEquals(1, count($result));
+        $this->assertInstanceOf('\Psecio\Validation\Check\Isarray', $result[0]);
+    }
 }
