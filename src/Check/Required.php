@@ -9,6 +9,6 @@ class Required extends \Psecio\Validation\Check
 {
     public function execute($input)
     {
-        return empty($input);
+        return !empty($input);
     }
 }
