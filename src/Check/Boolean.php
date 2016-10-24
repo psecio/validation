@@ -12,6 +12,6 @@ class Boolean extends \Psecio\Validation\Check
 
     public function execute($input)
     {
-        return in_array($input, $this->allowed);
+        return in_array($input, $this->allowed, true);
     }
 }
