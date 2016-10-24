@@ -40,7 +40,12 @@ Checks for boolean values (`true`, `false`, `0`, `1` and strings `'0'`, `'1'`)
 Checks to be sure the value given is a *date* (as parsed by [strtotime](http://php.net/strtotime))
 
 #### integer
-Checks for integer-only values
+Checks for integer-only values. Can also include minimum and maximum values:
+
+```php
+// Minimum of 1, max of 10
+$rules = ['mynumber' => 'integer[1,10]']
+```
 
 #### array
 Checks to ensure the value provided is an array
