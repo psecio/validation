@@ -21,3 +21,14 @@ var_export($result);
 
 ?>
 ```
+
+
+### Checks
+
+Here is a listing of the check types that Validation supports:
+
+#### alpha
+Checks for *only* alpha characters
+
+#### alphanum
+Checks for *only* alpha-numeric characters
