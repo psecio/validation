@@ -29,7 +29,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
     public function testValidIntegerMinimumOnly()
     {
         // Set the minimum value to 7
-        $this->int->setAdditional([7]);
+        $this->int->setAdditional(['min' => 7]);
 
         // This passes as it's higher
         $this->assertTrue($this->int->execute(8));
@@ -44,7 +44,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
     public function testValidIntegerMinimumMaximum()
     {
         // Set the minimum value to 7 and max to 10
-        $this->int->setAdditional([7, 10]);
+        $this->int->setAdditional(['min' => 7, 'max' => 10]);
 
         // This passes as it's higher
         $this->assertTrue($this->int->execute(9));

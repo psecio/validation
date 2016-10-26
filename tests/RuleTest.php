@@ -33,6 +33,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Testing the parsing of a rule string, both with a nromal and parameterized value
+     * @group test1
      */
     public function testParseRuleString()
     {
