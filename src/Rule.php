@@ -74,7 +74,6 @@ class Rule
 
         foreach ($parts as $part) {
             $addl = [];
-
             if (strstr($part, '[') !== false && strstr($part, ']') !== false) {
                 preg_match('/(.+)\[(.+?)\]/', $part, $matches);
                 $addl = explode(',', $matches[2]);
@@ -89,6 +88,13 @@ class Rule
                 throw new \InvalidArgumentException('Check type "'.$part.'" is invalid');
             }
             $check = new $checkNs($addl);
+
+            // Reset the additional values based on the param types
+            $addl = $check->get();
+            $params = $check->getParams();
+            if (!empty($params)) {
+                $check->setAdditional(array_combine($params, $addl));
+            }
             $checks->add($check);
         }
         return $checks;
