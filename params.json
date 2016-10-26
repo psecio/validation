@@ -1,0 +1,6 @@
+{
+  "name": "Psecio/Validation",
+  "tagline": "A simple little validation library",
+  "body": "### Psecio\\Validation\r\n\r\nThe `Psecio\\Validation` library aims to be a simple, lightweight validation library that makes it simpler to integrate robust validation into your application. Simply put, it wants to lower the barrier between you and ensuring your user input is what it should be. \r\n\r\n#### Quick Start\r\n\r\nTo get the `Validation` library installed and be ready for use, you can use this `composer require` command:\r\n\r\n```\r\ncomposer require psecio/validation\r\n```\r\n\r\nYou can then use it immediately to evaluate incoming data from a simple PHP array based on a provided set of [rules](/rules):\r\n\r\n```php\r\n<?php\r\n$validator = \\Psecio\\Validate\\Validator::getInstance();\r\n$data = [\r\n    'first_name' => 'Chris'\r\n    'email' => 'info@websec.io'\r\n];\r\n$rules = [\r\n    'first_name' => 'required',\r\n    'email' => 'required|email'\r\n];\r\n\r\nif ($validator->execute($rules, $data) === true) {\r\n    echo 'Validation successful!';\r\n}\r\n\r\n?>\r\n```",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
