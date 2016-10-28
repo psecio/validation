@@ -10,6 +10,15 @@ abstract class Validator
             return new \Psecio\Validation\Validator\Simple();
         } else {
             // get a more complex one
+            $parts = explode('.', $type);
+            $validatorNs = '\\Psecio\\Validation\\Validator';
+            foreach ($parts as $part) {
+                $validatorNs .= '\\'.ucwords($part);
+            }
+            if (!class_exists($validatorNs)) {
+                throw new \InvalidArgumentException('Invalid validator type: '.$type);
+            }
+            return new $validatorNs();
         }
     }
 
@@ -30,8 +39,11 @@ abstract class Validator
         // Go through the set and execute all check
         $failures = [];
         foreach ($set as $key => $rule) {
-            if ($rule->isRequired() && (!isset($input[$key]) || empty($input[$key]))) {
+            if ($rule->isRequired() === true && (isset($input[$key]) === false || empty($input[$key]) === true)) {
                 $failures[$key] = $rule;
+                if (!isset($input[$key])) {
+                    continue;
+                }
             }
 
             $result = $rule->execute($input[$key]);
