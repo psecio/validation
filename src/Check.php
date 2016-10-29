@@ -17,6 +17,12 @@ abstract class Check
     public $params = [];
 
     /**
+     * Current check message (for failures)
+     * @var string
+     */
+    public $message = '';
+
+    /**
      * Init the object and set additional values if provided
      *
      * @param array $addl Set of additional values
@@ -61,6 +67,20 @@ abstract class Check
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * Get the value of the message for the check
+     *
+     * @param string $name Key name for the field
+     * @return string Formatted/default message
+     */
+    public function getMessage($name = null)
+    {
+        if ($name === null) {
+            return $this->message;
+        }
+        return str_replace(':name', $name, $this->message);
     }
 
     /**

@@ -5,13 +5,15 @@ namespace Psecio\Validation;
 class Rule
 {
     protected $checks;
+    protected $key;
     protected $failures = [];
     protected $checkMap = [
         'array' => 'IsArray'
     ];
 
-    public function __construct($ruleString = null)
+    public function __construct($key, $ruleString = null)
     {
+        $this->key = $key;
         if ($ruleString !== null) {
             $this->setChecks($this->parse($ruleString));
         }
@@ -41,9 +43,18 @@ class Rule
     {
         $this->failures[] = $check;
     }
-    public function getFailures()
+    public function getFailures($raw = false)
     {
-        return $this->failures;
+        if ($raw === true) {
+            return $this->failures;
+        }
+        // Otherwise, get the string values
+        $messages = [];
+        foreach ($this->failures as $check) {
+            $messages[] = $check->getMessage($this->key);
+        }
+
+        return $messages;
     }
     public function isFailed()
     {

@@ -9,7 +9,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->rule = new Rule();
+        $this->rule = new Rule('test');
     }
     public function tearDown()
     {
@@ -38,7 +38,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testParseRuleString()
     {
         $string = 'required|integer[0,2]';
-        $rule = new Rule($string);
+        $rule = new Rule('test', $string);
 
         $this->assertEquals(2, count($rule->getChecks()));
     }
