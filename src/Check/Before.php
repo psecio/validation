@@ -5,7 +5,8 @@ namespace Psecio\Validation\Check;
 class Before extends \Psecio\Validation\Check
 {
     public $params = ['start'];
-    
+    public $message = 'The :name value is not before the date provided';
+
     public function execute($input)
     {
         $addl = $this->get();
