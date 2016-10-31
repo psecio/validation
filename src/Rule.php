@@ -6,14 +6,17 @@ class Rule
 {
     protected $checks;
     protected $key;
+    protected $data = [];
     protected $failures = [];
     protected $checkMap = [
         'array' => 'IsArray'
     ];
 
-    public function __construct($key, $ruleString = null)
+    public function __construct($key, $ruleString = null, array $data = [])
     {
         $this->key = $key;
+        $this->setData($data);
+
         if ($ruleString !== null) {
             $this->setChecks($this->parse($ruleString));
         }
@@ -27,6 +30,15 @@ class Rule
     public function getChecks($raw = false)
     {
         return ($raw === true) ? $this->checks : $this->checks->toArray();
+    }
+
+    public function setData(array $data)
+    {
+        $this->data = $data;
+    }
+    public function getData()
+    {
+        return $this->data;
     }
 
     public function execute($input)
@@ -82,12 +94,12 @@ class Rule
     {
         $checks = new CheckSet();
         $parts = explode('|', $ruleString);
+        $addl = [];
 
         foreach ($parts as $part) {
-            $addl = [];
             if (strstr($part, '[') !== false && strstr($part, ']') !== false) {
                 preg_match('/(.+)\[(.+?)\]/', $part, $matches);
-                $addl = explode(',', $matches[2]);
+                $addl = array_merge($addl, explode(',', $matches[2]));
                 $part = $matches[1];
             }
 
@@ -98,7 +110,7 @@ class Rule
             if (!class_exists($checkNs)) {
                 throw new \InvalidArgumentException('Check type "'.$part.'" is invalid');
             }
-            $check = new $checkNs($addl);
+            $check = new $checkNs($this->key, $this->getData(), $addl);
 
             // Reset the additional values based on the param types
             $addl = $check->get();

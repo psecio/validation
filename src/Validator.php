@@ -41,14 +41,15 @@ abstract class Validator
         $set = [];
 
         foreach ($rules as $key => $ruleString) {
-            $set[$key] = new Rule($key, $ruleString);
+            $rule = new Rule($key, $ruleString, $input);
+            $set[$key] = $rule;
         }
 
         // Go through the set and execute all check
         $failures = [];
         foreach ($set as $key => $rule) {
             if ($rule->isRequired() === true && (isset($input[$key]) === false || empty($input[$key]) === true)) {
-                $rule->addFailure(new \Psecio\Validation\Check\Required());
+                $rule->addFailure(new \Psecio\Validation\Check\Required($key, $input));
                 $failures[$key] = $rule;
                 if (!isset($input[$key])) {
                     continue;

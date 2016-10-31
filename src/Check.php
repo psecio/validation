@@ -22,14 +22,19 @@ abstract class Check
      */
     public $message = '';
 
+    protected $input = [];
+    protected $key = '';
+
     /**
      * Init the object and set additional values if provided
      *
      * @param array $addl Set of additional values
      */
-    public function __construct(array $addl = [])
+    public function __construct($key, $input, array $addl = [])
     {
         $this->setAdditional($addl);
+        $this->setInput($input);
+        $this->setKey($key);
     }
 
     /**
@@ -40,6 +45,24 @@ abstract class Check
     public function setAdditional(array $addl)
     {
         $this->addl = $addl;
+    }
+
+    public function setInput($input)
+    {
+        $this->input = $input;
+    }
+    public function getInput()
+    {
+        return $this->input;
+    }
+
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
+    public function getKey()
+    {
+        return $this->key;
     }
 
     /**
