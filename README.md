@@ -114,3 +114,16 @@ $rules = [
     'mystring' => 'regex[/[0-9a-z]+/]'
 ]
 ```
+
+#### equals
+This check can be used to see if the values of two fields match exactly.
+
+```
+$data = [
+    'foo' => 'test1',
+    'bar' => 'test1'
+];
+$rules = [
+    'bar' => 'equals[foo]'
+];
+```
