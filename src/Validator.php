@@ -35,6 +35,22 @@ abstract class Validator
         return $messages;
     }
 
+    /**
+     * Flatten out the error messages into a single level array
+     *
+     * @return array Error set without keys
+     */
+    public function errorArray()
+    {
+        $messages = [];
+        foreach ($this->failures as $key => $rule) {
+            foreach ($rule->getFailures() as $fail) {
+                $messages[] = $fail;
+            }
+        }
+        return $messages;
+    }
+
     public function execute($input, array $rules = [], array $messages = [])
     {
         // Make our rule set
