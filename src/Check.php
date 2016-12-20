@@ -66,6 +66,20 @@ abstract class Check
     }
 
     /**
+     * Get the "type" of the validation (based on class name)
+     *
+     * @return string Check class "type"
+     */
+    public function getType()
+    {
+        return strtolower(str_replace(
+            [__NAMESPACE__, '\\', 'Check'],
+            '',
+            get_called_class()
+        ));
+    }
+
+    /**
      * Get a value from the additional value set
      * If the "name" value is given, it tries to locate the value, returns null if not found
      * If no "name" is given, returns all values

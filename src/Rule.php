@@ -11,8 +11,9 @@ class Rule
     protected $checkMap = [
         'array' => 'IsArray'
     ];
+    protected $messages = [];
 
-    public function __construct($key, $ruleString = null, array $data = [])
+    public function __construct($key, $ruleString = null, array $data = [], array $messages = [])
     {
         $this->key = $key;
         $this->setData($data);
@@ -20,6 +21,7 @@ class Rule
         if ($ruleString !== null) {
             $this->setChecks($this->parse($ruleString));
         }
+        $this->setMessages($messages);
     }
 
     public function setChecks(CheckSet $set)
@@ -39,6 +41,23 @@ class Rule
     public function getData()
     {
         return $this->data;
+    }
+
+    public function setMessages(array $messages)
+    {
+        $this->messages = $messages;
+    }
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+    public function getMessage($key)
+    {
+        return ($this->hasMessage($key) == true) ? $this->messages[$key] : null;
+    }
+    public function hasMessage($key)
+    {
+        return (isset($this->messages[$key]));
     }
 
     public function execute($input)
@@ -63,7 +82,15 @@ class Rule
         // Otherwise, get the string values
         $messages = [];
         foreach ($this->failures as $check) {
-            $messages[] = $check->getMessage($this->key);
+            if ($this->hasMessage($this->key) === true) {
+                $message = $this->getMessage($this->key);
+                if (is_array($message) && isset($message[$check->getType()])) {
+                    $message = $message[$check->getType()];
+                }
+                $messages[] = str_replace(':name', $this->key, $message);
+            } else {
+                $messages[] = $check->getMessage($this->key);
+            }
         }
 
         return $messages;
