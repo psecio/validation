@@ -8,6 +8,15 @@ class Length extends \Psecio\Validation\Check
 
     public $params = ['min', 'max'];
 
+    public function setAdditional(array $addl)
+    {
+        // If the max value isn't set
+        if (!isset($addl[1])) {
+            $addl[1] = null;
+        }
+        parent::setAdditional($addl);
+    }
+
     public function execute($input)
     {
         $params = $this->get();
