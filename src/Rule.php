@@ -120,24 +120,30 @@ class Rule
     public function parse($ruleString)
     {
         $checks = new CheckSet();
-        $parts = explode('|', $ruleString);
+        $parts = (!is_array($ruleString)) ? explode('|', $ruleString) : $ruleString;
         $addl = [];
 
         foreach ($parts as $part) {
-            if (strstr($part, '[') !== false && strstr($part, ']') !== false) {
-                preg_match('/(.+)\[(.+?)\]/', $part, $matches);
-                $addl = array_merge($addl, explode(',', $matches[2]));
-                $part = $matches[1];
-            }
+            if (is_object($part)) {
+                $data = $this->getData();
+                $part->setAdditional($data);
+                $check = $part;
+            } else {
+                if (strstr($part, '[') !== false && strstr($part, ']') !== false) {
+                    preg_match('/(.+)\[(.+?)\]/', $part, $matches);
+                    $addl = array_merge($addl, explode(',', $matches[2]));
+                    $part = $matches[1];
+                }
 
-            if (isset($this->checkMap[$part])) {
-                $part = $this->checkMap[$part];
+                if (isset($this->checkMap[$part])) {
+                    $part = $this->checkMap[$part];
+                }
+                $checkNs = '\\Psecio\\Validation\\Check\\'.ucwords(strtolower($part));
+                if (!class_exists($checkNs)) {
+                    throw new \InvalidArgumentException('Check type "'.$part.'" is invalid');
+                }
+                $check = new $checkNs($this->key, $this->getData(), $addl);
             }
-            $checkNs = '\\Psecio\\Validation\\Check\\'.ucwords(strtolower($part));
-            if (!class_exists($checkNs)) {
-                throw new \InvalidArgumentException('Check type "'.$part.'" is invalid');
-            }
-            $check = new $checkNs($this->key, $this->getData(), $addl);
 
             // Reset the additional values based on the param types
             $addl = $check->get();

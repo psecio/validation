@@ -30,7 +30,7 @@ abstract class Check
      *
      * @param array $addl Set of additional values
      */
-    public function __construct($key, $input, array $addl = [])
+    public function __construct($key, $input = null, array $addl = [])
     {
         $this->setAdditional($addl);
         $this->setInput($input);
