@@ -10,8 +10,8 @@ class CheckSetTest extends \PHPUnit_Framework_TestCase
     public function testForeachValid()
     {
         $checks = [
-            new \Psecio\Validation\Check\Integer(),
-            new \Psecio\Validation\Check\Numeric()
+            new \Psecio\Validation\Check\Integer('test1'),
+            new \Psecio\Validation\Check\Numeric('test2')
         ];
         $set = new CheckSet($checks);
         foreach ($set as $index => $check) {
@@ -25,8 +25,8 @@ class CheckSetTest extends \PHPUnit_Framework_TestCase
     public function testArrayAccessValid()
     {
         $checks = [
-            new \Psecio\Validation\Check\Integer(),
-            new \Psecio\Validation\Check\Numeric()
+            new \Psecio\Validation\Check\Integer('test1'),
+            new \Psecio\Validation\Check\Numeric('test2')
         ];
         $set = new CheckSet($checks);
 
@@ -34,7 +34,7 @@ class CheckSetTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(isset($set[4]));
 
         // Set a new item and then fetch it
-        $set[2] = new \Psecio\Validation\Check\Boolean();
+        $set[2] = new \Psecio\Validation\Check\Boolean('test');
         $this->assertInstanceOf('\Psecio\Validation\Check\Boolean', $set[2]);
         unset($set[2]);
         $this->assertFalse(isset($set[2]));

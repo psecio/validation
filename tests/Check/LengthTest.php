@@ -8,7 +8,7 @@ class LengthTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->length = new Length();
+        $this->length = new Length('test');
     }
     public function tearDown()
     {

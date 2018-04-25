@@ -8,7 +8,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->json = new Json();
+        $this->json = new Json('test');
     }
     public function tearDown()
     {

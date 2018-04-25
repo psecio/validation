@@ -8,7 +8,7 @@ class AlphanumTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->alphanum = new Alphanum();
+        $this->alphanum = new Alphanum('test1');
     }
     public function tearDown()
     {

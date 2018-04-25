@@ -8,7 +8,7 @@ class InTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->in = new In();
+        $this->in = new In('test');
     }
     public function tearDown()
     {

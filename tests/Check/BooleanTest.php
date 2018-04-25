@@ -8,7 +8,7 @@ class BooleanTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->boolean = new Boolean();
+        $this->boolean = new Boolean('test');
     }
     public function tearDown()
     {

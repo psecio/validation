@@ -8,7 +8,7 @@ class AfterTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->after = new After();
+        $this->after = new After('test1', 'test2');
     }
     public function tearDown()
     {

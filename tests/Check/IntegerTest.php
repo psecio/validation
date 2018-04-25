@@ -8,7 +8,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->int = new Integer();
+        $this->int = new Integer('test');
     }
     public function tearDown()
     {

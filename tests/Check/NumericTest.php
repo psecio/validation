@@ -8,7 +8,7 @@ class NumericTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->num = new Numeric();
+        $this->num = new Numeric('test');
     }
     public function tearDown()
     {

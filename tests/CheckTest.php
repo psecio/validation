@@ -12,7 +12,7 @@ class CheckTest extends \PHPUnit_Framework_TestCase
         $addl = [
             'foo' => 'bar'
         ];
-        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', [$addl]);
+        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', ['test1', 'test2', $addl]);
         $this->assertEquals($addl, $check->get());
     }
 
@@ -24,7 +24,7 @@ class CheckTest extends \PHPUnit_Framework_TestCase
         $addl = [
             'bar' => 'foo'
         ];
-        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check');
+        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', ['test1']);
         $check->setAdditional($addl);
 
         $this->assertEquals($addl, $check->get());
@@ -38,7 +38,7 @@ class CheckTest extends \PHPUnit_Framework_TestCase
         $addl = [
             'foo' => 'bar'
         ];
-        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', [$addl]);
+        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', ['test1', 'test2', $addl]);
         $this->assertEquals('bar', $check->get('foo'));
     }
 

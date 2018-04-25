@@ -8,7 +8,7 @@ class BeforeTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->before = new Before();
+        $this->before = new Before('test');
     }
     public function tearDown()
     {

@@ -8,7 +8,7 @@ class RegexTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->regex = new Regex();
+        $this->regex = new Regex('test');
     }
     public function tearDown()
     {

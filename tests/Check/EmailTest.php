@@ -8,7 +8,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->email = new Email();
+        $this->email = new Email('test');
     }
     public function tearDown()
     {

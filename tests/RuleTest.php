@@ -23,7 +23,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testGetSetChecks()
     {
         $checks = [
-            new \Psecio\Validation\Check\Alpha()
+            new \Psecio\Validation\Check\Alpha('test')
         ];
         $checkSet = new CheckSet($checks);
 
@@ -49,7 +49,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function testIsRequiredCheck()
     {
         $checkSet = new CheckSet([
-            new \Psecio\Validation\Check\Required()
+            new \Psecio\Validation\Check\Required('test')
         ]);
 
         $this->rule->setChecks($checkSet);
@@ -67,7 +67,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     {
         $input = 'test';
         $checkSet = new CheckSet([
-            new \Psecio\Validation\Check\Required()
+            new \Psecio\Validation\Check\Required('test')
         ]);
 
         $this->rule->setChecks($checkSet);
@@ -82,7 +82,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     {
         $input = 'test';
         $checkSet = new CheckSet([
-            new \Psecio\Validation\Check\Integer()
+            new \Psecio\Validation\Check\Integer('test')
         ]);
 
         $this->rule->setChecks($checkSet);

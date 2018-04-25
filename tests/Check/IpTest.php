@@ -8,7 +8,7 @@ class IpTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->ip = new Ip();
+        $this->ip = new Ip('test');
     }
     public function tearDown()
     {

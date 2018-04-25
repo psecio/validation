@@ -8,7 +8,7 @@ class RequiredTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->req = new Required();
+        $this->req = new Required('test');
     }
     public function tearDown()
     {

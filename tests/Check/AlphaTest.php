@@ -8,7 +8,7 @@ class AlphaTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->alpha = new Alpha();
+        $this->alpha = new Alpha('test1', 'test2');
     }
     public function tearDown()
     {

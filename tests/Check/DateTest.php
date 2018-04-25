@@ -8,7 +8,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->date = new Date();
+        $this->date = new Date('test');
     }
     public function tearDown()
     {

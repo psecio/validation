@@ -8,7 +8,7 @@ class IsarrayTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->array = new Isarray();
+        $this->array = new Isarray('test');
     }
     public function tearDown()
     {
