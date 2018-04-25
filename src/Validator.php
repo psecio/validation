@@ -64,6 +64,13 @@ abstract class Validator
         // Go through the set and execute all check
         $failures = [];
         foreach ($set as $key => $rule) {
+            // If it's a "required" value and isn't set, fail it
+            if ($rule->isRequired() && !isset($input[$key])) {
+                $rule->failRequired();
+                $failures[$key] = $rule;
+                continue;
+            }
+
             $result = $rule->execute($input[$key]);
             if ($result === false) {
                 $failures[$key] = $rule;
