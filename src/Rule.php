@@ -104,13 +104,24 @@ class Rule
         $this->checks->remove($index);
     }
 
-    public function isRequired($remove = true)
+    public function isRequired($remove = false)
     {
         foreach ($this->getChecks() as $index => $check) {
             if ($check instanceof \Psecio\Validation\Check\Required) {
                 if ($remove === true) {
                     $this->removeCheck($index);
                 }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function failRequired()
+    {
+        foreach ($this->getChecks() as $index => $check) {
+            if ($check instanceof \Psecio\Validation\Check\Required) {
+                $this->addFailure($check);
                 return true;
             }
         }
