@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class AlphaTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class AlphaTest extends TestCase
 {
     protected $alpha;
 

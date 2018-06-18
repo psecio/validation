@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class AfterTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class AfterTest extends TestCase
 {
     protected $after;
 

@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class EmailTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class EmailTest extends TestCase
 {
     protected $email;
 

@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class BooleanTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class BooleanTest extends TestCase
 {
     protected $boolean;
 

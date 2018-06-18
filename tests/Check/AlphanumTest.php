@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class AlphanumTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class AlphanumTest extends TestCase
 {
     protected $alphanum;
 

@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class IntegerTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class IntegerTest extends TestCase
 {
     protected $int;
 

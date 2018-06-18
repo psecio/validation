@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class LengthTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class LengthTest extends TestCase
 {
     protected $length;
 
