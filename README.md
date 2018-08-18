@@ -14,7 +14,7 @@ $data = [
 ];
 $rules = [
     'foo' => 'required|alpha'
-]
+];
 
 $result = $v->execute($rules, $data);
 var_export($result);
@@ -22,6 +22,35 @@ var_export($result);
 ?>
 ```
 
+### Messages
+
+You can also define custom messages for the failures using the third `$messages` parameter on the `execute` method. The key names on the array match to the value name + check type. For example:
+
+```php
+<?php
+$v = \Psecio\Validate\Validator::getInstance();
+$data = [
+    'foo' => 'bar'
+];
+$rules = [
+    'foo' => 'required|alpha'
+];
+$messages = [
+	'foo' => ['alpha' => 'This is a custom message']
+];
+
+$result = $v->execute($rules, $data, $messages);
+var_export($result);
+```
+
+In the example above, we define a custom message for the `alpha` check on the `foo` value. If that check were to fail, the error message output would be the new custom message instead of the default.
+
+### Getting Errors
+
+There are two method available to get the errors when the result of the `execute` method is `false`:
+
+- The `errors` method that will return a nested key/value set of failure messages (top level is the value name with each check failure message under it)
+- The `errorArray` method that will return a flattended set of messages useful for output to a page without requiring too much looping
 
 ### Checks
 
@@ -128,7 +157,7 @@ $rules = [
 ];
 ```
 
-### callback
+#### callback
 
 This check can be used to call custom logic via a static class method. For example, if your class is:
 
@@ -149,4 +178,4 @@ $rules = [
 ```
 
 And the `check` method should return a boolean result.
-}
+
