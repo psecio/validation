@@ -127,3 +127,26 @@ $rules = [
     'bar' => 'equals[foo]'
 ];
 ```
+
+### callback
+
+This check can be used to call custom logic via a static class method. For example, if your class is:
+
+```php
+<?php
+class Foo {
+	public static function check($input) { ... }
+}
+?>
+```
+
+Then your rule would look something like this:
+
+```php
+$rules = [
+	'mystring' => 'callback[Foo::check]'
+];
+```
+
+And the `check` method should return a boolean result.
+}
