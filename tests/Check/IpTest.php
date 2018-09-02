@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class IpTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class IpTest extends TestCase
 {
     protected $ip;
 

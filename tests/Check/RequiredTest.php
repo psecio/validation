@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class RequiredTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class RequiredTest extends TestCase
 {
     protected $req;
 

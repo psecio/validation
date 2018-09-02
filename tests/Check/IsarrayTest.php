@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class IsarrayTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class IsarrayTest extends TestCase
 {
     protected $array;
 

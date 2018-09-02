@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation;
 
-class CheckSetTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class CheckSetTest extends TestCase
 {
     /**
      * Test the looping of the set via a foreach
@@ -38,5 +40,20 @@ class CheckSetTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Psecio\Validation\Check\Boolean', $set[2]);
         unset($set[2]);
         $this->assertFalse(isset($set[2]));
+    }
+
+    /**
+     * Test that the check set can remove the specific index
+     */
+    public function testRemove()
+    {
+        $checks = [
+            new \Psecio\Validation\Check\Integer('test1'),
+            new \Psecio\Validation\Check\Numeric('test2')
+        ];
+        $set = new CheckSet($checks);
+        $set->remove(0);
+
+        $this->assertFalse(isset($set[0]));
     }
 }

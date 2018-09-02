@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class BeforeTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class BeforeTest extends TestCase
 {
     protected $before;
 
@@ -20,8 +22,8 @@ class BeforeTest extends \PHPUnit_Framework_TestCase
         $start = '+2 days';
         $end = 'yesterday';
 
-        $this->after->setAdditional(['start' => $start]);
-        $this->assertTrue($this->after->execute($end));
+        $this->before->setAdditional(['start' => $start]);
+        $this->assertTrue($this->before->execute($end));
     }
 
 }

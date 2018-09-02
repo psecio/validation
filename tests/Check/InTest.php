@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class InTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class InTest extends TestCase
 {
     protected $in;
 

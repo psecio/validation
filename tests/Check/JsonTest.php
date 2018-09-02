@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class JsonTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class JsonTest extends TestCase
 {
     protected $json;
 

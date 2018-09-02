@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation;
 
-class CheckTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class CheckTest extends TestCase
 {
     /**
      * Test setting the additional info on construct
@@ -52,5 +54,55 @@ class CheckTest extends \PHPUnit_Framework_TestCase
         ];
         $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', [$addl]);
         $this->assertNull($check->get('wrongkey'));
+    }
+
+    /**
+     * Test that can get the input
+     */
+    public function testGetInput()
+    {
+        $addl = [
+            'foo' => 'bar'
+        ];
+        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', [$addl]);
+        $check->setInput('input_value');
+        $this->assertEquals('input_value', $check->getInput());
+    }
+
+    /**
+     * Test that can get the key
+     */
+    public function testGetKey()
+    {
+        $addl = [
+            'foo' => 'bar'
+        ];
+        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', [$addl]);
+        $check->setKey('key');
+        $this->assertEquals('key', $check->getKey());
+    }
+
+    /**
+     * Test that can get the type
+     */
+    public function testGetType()
+    {
+        $addl = [
+            'foo' => 'bar'
+        ];
+        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', [$addl]);
+        $this->assertStringStartsWith('mock_', $check->getType());
+    }
+
+    /**
+     * Test that can get the message if name is null
+     */
+    public function testGetMessage()
+    {
+        $addl = [
+            'foo' => 'bar'
+        ];
+        $check = $this->getMockForAbstractClass('\Psecio\Validation\Check', [$addl]);
+        $this->assertEquals('', $check->getMessage());
     }
 }

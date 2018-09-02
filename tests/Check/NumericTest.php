@@ -2,7 +2,9 @@
 
 namespace Psecio\Validation\Check;
 
-class NumericTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class NumericTest extends TestCase
 {
     protected $num;
 

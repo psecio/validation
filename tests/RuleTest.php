@@ -1,9 +1,10 @@
 <?php
 
 namespace Psecio\Validation;
-use Psecio\Validation\CheckSet;
 
-class RuleTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class RuleTest extends TestCase
 {
     protected $rule;
 
@@ -109,5 +110,31 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Psecio\Validation\CheckSet', $result);
         $this->assertEquals(1, count($result));
         $this->assertInstanceOf('\Psecio\Validation\Check\Isarray', $result[0]);
+    }
+
+    public function testGetMessages()
+    {
+        $checks = 'array';
+        $result = $this->rule->parse($checks);
+
+        $this->assertEquals([], $this->rule->getMessages());
+    }
+
+    public function testGetMessage()
+    {
+        $checks = 'array';
+        $result = $this->rule->parse($checks);
+        $this->rule->setMessages(['message']);
+
+        $this->assertEquals('message', $this->rule->getMessage(0));
+        $this->assertNull($this->rule->getMessage(1));
+    }
+
+    public function testGetFailures()
+    {
+        $checks = 'array';
+        $result = $this->rule->parse($checks);
+
+        $this->assertEquals([], $this->rule->getFailures(true));
     }
 }
